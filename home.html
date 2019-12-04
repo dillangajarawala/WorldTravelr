@@ -2,20 +2,80 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0;">
         <title>Home</title>
-        <link type="text/css" rel="stylesheet" href="">
-        <script src="js/jquery-3.4.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
     </head>
 
     <body>
         <header>
             <!-- Nav bar -->
             <nav>
+                <ul>
+                    <li id="logo"><a href="home.html"><img src="images/logo.png"></a></li>
+                    <li>Destinations</li>
+                    <li><a href="home.html">Search Vacations</a></li>
+                </ul>
             </nav>
             <!-- end of nav bar -->
         </header>
-        <!-- footer -->
+        <img class="fill" src="images/home-pic.jpg">
+        <div id="search">
+            <label for="destination">Destination:</label>
+            <input id="destination" type="text">
+            <label for="comfort">Comfort:</label>
+            <select name="comfort" id="comfort">
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label for="start-date">Start Date:</label>
+            <input type="text" id="start-date">
+            <label for="end-date">Start Date:</label>
+            <input type="text" id="end-date">
+        </div>
         <footer>
+            <ul>
+                <li><a href="facebook.com"><img class="icon-link" src="images/facebook.png"></a></li>
+                <li><a href="instagram.com"><img class="icon-link" src="images/instagram.png"></a></li>
+                <li><a href="twitter.com"><img class="icon-link" src="images/twitter.png"></a></li>
+                <li><a href="youtube.com"><img class="icon-link" src="images/youtube.png"></a></li>
+            </ul>
+            <div id="footertext">
+                <h4>Book your next vacation with WorldTravelr</h4>
+                <p>We specialise in luxury all-inclusive holidays – with absolutely no hidden costs. Thrilling skiing, sensational long haul getaways and wonderful cruises - just a few of the experiences you can enjoy with Club Med. For travel advice on security, local laws, passport and visa requirements please visit https://www.gov.uk/foreign-travel-advice</p>
+            </div>
         </footer>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script>
+            $(function() {
+              var availableDrinks = [
+                  "Martinique",
+                  "Mauritius",
+                  "Peru",
+                  "Switzerland",
+                  "Singapore",
+                  "Kenya",
+                  "Hawaii"
+              ];
+              $( "#destination" ).autocomplete({
+                source: availableDrinks
+              });
+            });
+          </script>
+          <script>
+              $(function() {
+                  $( "#comfort").selectmenu({ width : 'auto'});
+              });
+          </script>
+          <script>
+                $(function() {
+                    $( "#start-date").datepicker({ dateFormat: "dd/mm/yy" });
+                    $( "#end-date").datepicker({ dateFormat: "dd/mm/yy" });
+                });
+            </script>
     </body>
 </html>
