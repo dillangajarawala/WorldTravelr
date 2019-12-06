@@ -33,7 +33,7 @@
         {
             "id":"resort3",
             "destination":"South America",
-            "name":"Playa del Inka",
+            "name":"Inkaterra Machu Picchu Pueblo Hotel",
             "location":"Peru",
             "comfortLevel": "5",
             "activities":["golf", "horse riding", "tennis", "spa"],
@@ -48,7 +48,7 @@
         {
             "id":"resort4",
             "destination":"Alps",
-            "name":"St. Moritz Resort and Spa",
+            "name":"Carlton Hotel St. Moritz",
             "location":"Switzerland",
             "comfortLevel": "3",
             "activities":["kids club","golf", "hiking", "horse riding", "spa"],
@@ -63,22 +63,22 @@
         {
             "id":"resort5",
             "destination":"Asia",
-            "name":"Singapore Sapphire",
+            "name":"Marina Bay Sands Singapore",
             "location":"Singapore",
             "comfortLevel": "4",
             "activities":["water skiing", "scuba diving", "sailing", "spa"],
             "price":2745,
             "startDate":"2020-01-01",
             "endDate":"2020-12-31",
-            "short_description":"Live in the lap of luxury at the Singapore Sapphire, an aquatic heaven located in South Asia. Create your perfect holiday with a perfectly tailored experience, and allow us to spoil you.",
+            "short_description":"Live in the lap of luxury at the Marina Bay Sands Singapore, an aquatic heaven located in South Asia. Create your perfect holiday with a perfectly tailored experience, and allow us to spoil you.",
             "picture":"images/waterSports.jpg",
-            "long_description":"Visit the water of your dreams, when you stay at the Singapore Sapphire. <br> This resort is beautifully tailored to provide the best water sports experience for anyone in the entirety of Asia. Hit the waves by going water skiing, sailing, or even go under the water and see the natural wildlife while scuba diving. <br> Once you need a break, indulge in our outdoor spa or enjoy a Michelin-starred dinner at our restaurants on premises. This resort promises not to disappoint.",
+            "long_description":"Visit the water of your dreams, when you stay at the Marina Bay Sands Singapore. <br> This resort is beautifully tailored to provide the best water sports experience for anyone in the entirety of Asia. Hit the waves by going water skiing, sailing, or even go under the water and see the natural wildlife while scuba diving. <br> Once you need a break, indulge in our outdoor spa or enjoy a Michelin-starred dinner at our restaurants on premises. This resort promises not to disappoint.",
             "url":"resort5.html"
         },
         {
             "id":"resort6",
             "destination":"Africa",
-            "name":"The Grande Safari Resort",
+            "name":"Hotel Fairmont Mara Safari Club",
             "location":"Kenya",
             "comfortLevel": "3",
             "activities":["kids club","golf", "hiking", "horse riding", "tennis"],
@@ -87,22 +87,22 @@
             "endDate":"2021-09-31",
             "short_description":"The perfect place to bring your kids, this safari resort will take care of all your needs while providing an exciting experience. Take your African holiday here!",
             "picture":"images/safari.jpg",
-            "long_description":"Jump into an exciting safari filled with beautiful landscapes and a variety of animals. <br> Experience world-class African hospitality, fun child activities, and all the animals you could ever want to see. Enjoy outdoor activities such as golf, tennis, horseback riding, and lots of hiking! The Grande Safari resort delivers all of those plus great amenities. <br> If you want an experience for the whole family to never forget, be sure to book your suite today!",
+            "long_description":"Jump into an exciting safari filled with beautiful landscapes and a variety of animals. <br> Experience world-class African hospitality, fun child activities, and all the animals you could ever want to see. Enjoy outdoor activities such as golf, tennis, horseback riding, and lots of hiking! Hotel Fairmont Mara Safari Club resort delivers all of those plus great amenities. <br> If you want an experience for the whole family to never forget, be sure to book your suite today!",
             "url":"resort6.html"
         },
         {
             "id":"resort7",
             "destination":"North and Central America",
-            "name":"Paradise Resort at Waikiki",
+            "name":"The Kahala Hotel & Resort",
             "location":"Hawaii",
             "comfortLevel": "5",
             "activities":["kids club","golf", "scuba diving", "tennis", "sailing", "spa", "water skiing", "scuba diving", "hiking", "horseback riding"],
             "price":5000,
             "startDate":"2019-01-01",
             "endDate":"2024-12-31",
-            "short_description":"Nestled on the most beautiful corner of Hawaii's Oahu Island, the Paradise Resort will take your breath away and deliver one of the best resort stays of your life. ",
+            "short_description":"Nestled on the most beautiful corner of Hawaii's Oahu Island, The Kahala Resort will take your breath away and deliver one of the best resort stays of your life. ",
             "picture":"images/paradise.jpg",
-            "long_description":"Make all your dreams come true in one of the most beautiful places on Earth. <br> The top-notch amenities and pristine service offered by the Paradise Resort is unmatched anywhere else. Enjoy a virtually unlimited set of daily activities to participate in, and visit our world-renowed spa for a relaxing afternoon. <br> Additionally, take advantage of our five-star dining and poolside bars for an added flair to your time. Kids are welcome as well, and have a separate set of activities.",
+            "long_description":"Make all your dreams come true in one of the most beautiful places on Earth. <br> The top-notch amenities and pristine service offered by The Kahala Resort is unmatched anywhere else. Enjoy a virtually unlimited set of daily activities to participate in, and visit our world-renowed spa for a relaxing afternoon. <br> Additionally, take advantage of our five-star dining and poolside bars for an added flair to your time. Kids are welcome as well, and have a separate set of activities.",
             "url":"resort7.html"
         }
     ]
