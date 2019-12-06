@@ -14,9 +14,10 @@
             <!-- Nav bar -->
             <nav>
                 <ul>
-                    <li id="logo"><a href="home.html"><img src="images/logo.png"></a></li>
+                    <li class="logo"><a href="home.html"><img src="images/logo.png"></a></li>
                     <li>Destinations</li>
                     <li><a href="home.html">Search Vacations</a></li>
+                    <li><a href="resort1.html">Resort 1</a></li>
                 </ul>
             </nav>
             <!-- end of nav bar -->
@@ -33,8 +34,32 @@
             </select>
             <label for="start-date">Start Date:</label>
             <input type="text" id="start-date">
-            <label for="end-date">Start Date:</label>
+            <label for="end-date">End Date:</label>
             <input type="text" id="end-date">
+            <br><br>
+            <label for="amount">Price range:</label>
+            <input type="text" id="amount" readonly class="goldSliderText" value="(Use slider)">
+            <div id="slider-range"></div>
+            <br><br>
+            <label for="activities">Activities:</label><br>
+            <div id="activities">
+                <input type="checkbox" id="check1">
+                <label for="check1">Water Skiing</label>
+                <input type="checkbox" id="check2">
+                <label for="check2">Sailing</label>
+                <input type="checkbox" id="check3">
+                <label for="check3">Tennis</label>
+                <input type="checkbox" id="check4">
+                <label for="check4">Scuba Diving</label>
+                <input type="checkbox" id="check5">
+                <label for="check5">Golf</label>
+                <input type="checkbox" id="check6">
+                <label for="check6">Hiking</label>
+                <input type="checkbox" id="check7">
+                <label for="check7">Horse Riding</label>
+                <input type="checkbox" id="check8">
+                <label for="check8">Spa</label>
+            </div>
         </div>
         <footer>
             <ul>
@@ -65,17 +90,35 @@
                 source: availableDrinks
               });
             });
-          </script>
-          <script>
-              $(function() {
-                  $( "#comfort").selectmenu({ width : 'auto'});
+        </script>
+        <script>
+            $(function() {
+                $( "#comfort").selectmenu({ width : 'auto'});
+            });
+        </script>
+        <script>
+            $(function() {
+                $( "#start-date").datepicker({ dateFormat: "dd/mm/yy" });
+                $( "#end-date").datepicker({ dateFormat: "dd/mm/yy" });
+            });
+        </script>
+        <script>
+            $(function() {
+              $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 6000,
+                values: [ 1000, 4000 ],
+                slide: function( event, ui ) {
+                  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                }
               });
-          </script>
-          <script>
-                $(function() {
-                    $( "#start-date").datepicker({ dateFormat: "dd/mm/yy" });
-                    $( "#end-date").datepicker({ dateFormat: "dd/mm/yy" });
-                });
-            </script>
+            });
+        </script>
+        <script>
+            $(function() {
+                $( "#activities" ).controlgroup();
+            });
+        </script>
     </body>
 </html>
