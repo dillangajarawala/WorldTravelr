@@ -96,7 +96,7 @@
             "name":"The Kahala Hotel & Resort",
             "location":"Hawaii",
             "comfortLevel": "5",
-            "activities":["kids club","golf", "scuba diving", "tennis", "sailing", "spa", "water skiing", "scuba diving", "hiking", "horseback riding"],
+            "activities":["kids club","golf", "scuba diving", "tennis", "sailing", "spa", "water skiing", "scuba diving", "hiking", "horse riding"],
             "price":5000,
             "startDate":"2019-01-01",
             "endDate":"2024-12-31",
