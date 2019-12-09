@@ -63,16 +63,16 @@
         {
             "id":"resort5",
             "destination":"Asia",
-            "name":"Marina Bay Sands Singapore",
+            "name":"Beach Villas Hotel",
             "location":"Singapore",
             "comfortLevel": "4",
             "activities":["water skiing", "scuba diving", "sailing", "spa"],
             "price":2745,
             "startDate":"2020-01-01",
             "endDate":"2020-12-31",
-            "short_description":"Live in the lap of luxury at the Marina Bay Sands Singapore, an aquatic heaven located in South Asia. Create your perfect holiday with a perfectly tailored experience, and allow us to spoil you.",
+            "short_description":"Live in the lap of luxury at the Beach Villas Hotel, an aquatic heaven located in South Asia. Create your perfect holiday with a perfectly tailored experience, and allow us to spoil you.",
             "picture":"images/singapore.jpg",
-            "long_description":"Visit the water of your dreams, when you stay at the Marina Bay Sands Singapore. <br> This resort is beautifully tailored to provide the best water sports experience for anyone in the entirety of Asia. Hit the waves by going water skiing, sailing, or even go under the water and see the natural wildlife while scuba diving. <br> Once you need a break, indulge in our outdoor spa or enjoy a Michelin-starred dinner at our restaurants on premises. This resort promises not to disappoint.",
+            "long_description":"Visit the water of your dreams, when you stay at the Beach Villas Hotel. <br> This resort is beautifully tailored to provide the best water sports experience for anyone in the entirety of Asia. Hit the waves by going water skiing, sailing, or even go under the water and see the natural wildlife while scuba diving. <br> Once you need a break, indulge in our outdoor spa or enjoy a Michelin-starred dinner at our restaurants on premises. This resort promises not to disappoint.",
             "url":"resort5.html"
         },
         {
