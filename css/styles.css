@@ -173,20 +173,6 @@ a {
     color: aquamarine;
 }
 
-.activity-image {
-    height: 150px;
-    border-radius: 25px;
-    margin-left: 30%; 
-
-}
-
-.activity-item p {
-    float: left;
-    vertical-align: middle;
-    margin-top: 5%;
-    margin-left: 10%;
-}
-
 h3 {
     text-align: center;
 }
@@ -238,4 +224,12 @@ h3 {
     margin: auto;
     padding: 2%;
     line-height: 2em;
+}
+
+.hidden-info table {
+    margin-left: 15%;
+}
+
+table p {
+    font-size: larger;
 }

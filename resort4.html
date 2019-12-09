@@ -2,20 +2,112 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Resort 4</title>
-        <link type="text/css" rel="stylesheet" href="">
-        <script src="js/jquery-3.4.1.min.js"></script>
+        <title></title>
+        <link type="text/css" rel="stylesheet" href="css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="css/lightbox.min.css">
     </head>
 
     <body>
         <header>
             <!-- Nav bar -->
             <nav>
+                <ul>
+                    <li class="logo"><a href="home.html"><img src="images/logo.png"></a></li>
+                    <li>Destinations</li>
+                    <li><a href="home.html">Search Vacations</a></li>
+                </ul>
             </nav>
             <!-- end of nav bar -->
         </header>
+        <div class="intro-content">
+            <h1></h1>
+            <img class="fill" src="">
+        </div>
+        <div class="small-content">
+            <h3 class="price-jump"></h3>
+            <p class="small-description"></p>
+            <br><br>
+            <hr>
+            <a class="collapsible-link" href="home.html">Basic Information &or;</a>
+            <div class="hidden-info">
+                <p class="comfort-lvl"></p>
+                <p class="destination"></p>
+                <p class="location"></p>
+            </div>
+            <hr>
+            <a class="collapsible-link" href="home.html">Activities &or;</a>
+            <div class="hidden-info">
+                <br>
+                <table>
+                </table>
+            </div>
+            <hr>
+        </div>
+        <br>
+        <div class="more-images">
+            <h3>More Images</h3>
+            <a href="images/tropical-1.jpg" data-lightbox="image-1"><img class="thumbnail" src="images/tropical-1.jpg"></a>
+            <a href="images/tropical-2.jpg" data-lightbox="image-2"><img class="thumbnail" src="images/tropical-2.jpg"></a>
+            <a href="images/tropical-3.jpg" data-lightbox="image-3"><img class="thumbnail" src="images/tropical-3.jpg"></a>
+            <a href="images/tropical-4.jpg" data-lightbox="image-4"><img class="thumbnail" src="images/tropical-4.jpg"></a>
+            <a href="images/tropical-5.jpg" data-lightbox="image-5"><img class="thumbnail" src="images/tropical-5.jpg"></a>
+            <a href="images/tropical-6.jpg" data-lightbox="image-6"><img class="thumbnail" src="images/tropical-6.jpg"></a>
+        </div>
+        <br><br>
+        <div class="more-information">
+            <h3>More Information</h3>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#description"><span>Description</span></a></li>
+                    <li><a href="#map"><span>Map</span></a></li>
+                    <li><a href="#accomodation"><span>Accomodation</span></a></li>
+                </ul>
+                <div id="description">
+                    <p></p>
+                </div>
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29912.939530633284!2d57.37978663799113!3d-20.217635552539114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x217c45b667256001%3A0xc4a8ee94c5252c24!2sClub%20Med%20La%20Plantation%20D&#39;Albion!5e1!3m2!1sen!2suk!4v1575717974235!5m2!1sen!2suk" width="100%" height="500px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+                <div id="accomodation">
+                    <table>
+                        <tr>
+                            <td>King Room<br>
+                                Amenities: WiFi, Laundry, Unlimited Drinks
+                            </td>
+                            <td><img class="tabbed-image" src="images/kingroom.jpg"></td>
+                        </tr>
+                        <tr>
+                            <td>Double Queen Room<br>
+                                Amenities: WiFi, Laundry
+                            </td>
+                            <td><img class="tabbed-image" src="images/queenroom.jpg"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+        </div>
         <!-- footer -->
         <footer>
+            <ul>
+                <li><a href="facebook.com"><img class="icon-link" src="images/facebook.png"></a></li>
+                <li><a href="instagram.com"><img class="icon-link" src="images/instagram.png"></a></li>
+                <li><a href="twitter.com"><img class="icon-link" src="images/twitter.png"></a></li>
+                <li><a href="youtube.com"><img class="icon-link" src="images/youtube.png"></a></li>
+            </ul>
+            <div id="footertext">
+                <h4>Book your next vacation with WorldTravelr</h4>
+                <p>We specialise in luxury all-inclusive holidays – with absolutely no hidden costs. Thrilling skiing, sensational long haul getaways and wonderful cruises - just a few of the experiences you can enjoy with Club Med. For travel advice on security, local laws, passport and visa requirements please visit https://www.gov.uk/foreign-travel-advice</p>
+            </div>
         </footer>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/lightbox.min.js"></script>
+        <!-- <script>
+            loadData();
+        </script> -->
     </body>
 </html>
