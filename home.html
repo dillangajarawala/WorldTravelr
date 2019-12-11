@@ -23,43 +23,46 @@
             <!-- end of nav bar -->
         </header>
         <img class="fill" src="images/home-pic.jpg">
-        <div id="search">
+        <div class="search">
             <label for="destination">Destination:</label>
             <input id="destination" type="text">
             <label for="comfort">Comfort:</label>
             <select name="comfort" id="comfort">
-                <option value=3 selected>3</option>
+                <option value="" selected></option>
+                <option value=3>3</option>
                 <option value=4>4</option>
                 <option value=5>5</option>
             </select>
             <label for="start-date">Start Date:</label>
-            <input type="text" id="start-date">
+            <input type="date" id="start-date">
             <label for="end-date">End Date:</label>
-            <input type="text" id="end-date">
+            <input type="date" id="end-date">
             <br><br>
             <label for="amount">Price range:</label>
-            <input type="text" id="amount" readonly class="goldSliderText" value="(Use slider)">
+            <input type="text" id="amount" readonly class="goldSliderText">
             <div id="slider-range"></div>
             <br><br>
             <label for="activities">Activities:</label><br>
             <div id="activities">
-                <input type="checkbox" id="check1">
-                <label for="check1">Water Skiing</label>
-                <input type="checkbox" id="check2">
-                <label for="check2">Sailing</label>
-                <input type="checkbox" id="check3">
-                <label for="check3">Tennis</label>
-                <input type="checkbox" id="check4">
-                <label for="check4">Scuba Diving</label>
-                <input type="checkbox" id="check5">
-                <label for="check5">Golf</label>
-                <input type="checkbox" id="check6">
-                <label for="check6">Hiking</label>
-                <input type="checkbox" id="check7">
-                <label for="check7">Horse Riding</label>
-                <input type="checkbox" id="check8">
-                <label for="check8">Spa</label>
+                <input type="checkbox" id="water-skiing">
+                <label for="water-skiing">Water Skiing</label>
+                <input type="checkbox" id="sailing">
+                <label for="sailing">Sailing</label>
+                <input type="checkbox" id="tennis">
+                <label for="tennis">Tennis</label>
+                <input type="checkbox" id="scuba-diving">
+                <label for="scuba-diving">Scuba Diving</label>
+                <input type="checkbox" id="golf">
+                <label for="golf">Golf</label>
+                <input type="checkbox" id="hiking">
+                <label for="hiking">Hiking</label>
+                <input type="checkbox" id="horse-riding">
+                <label for="horse-riding">Horse Riding</label>
+                <input type="checkbox" id="spa">
+                <label for="spa">Spa</label>
             </div>
+            <br><br>
+            <a class="search-link" href="search.html"><img class="search-img" src="images/glass.png"></a>
         </div>
         <footer>
             <ul>
@@ -75,6 +78,7 @@
         </footer>
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script src="js/scripts.js"></script>
         <script>
             $(function() {
               var availableDrinks = [
@@ -87,7 +91,8 @@
                   "Hawaii"
               ];
               $( "#destination" ).autocomplete({
-                source: availableDrinks
+                source: availableDrinks,
+                required: true
               });
             });
         </script>
@@ -98,8 +103,8 @@
         </script>
         <script>
             $(function() {
-                $( "#start-date").datepicker({ dateFormat: "dd/mm/yy" });
-                $( "#end-date").datepicker({ dateFormat: "dd/mm/yy" });
+                $( "#start-date").datepicker({ dateFormat: "yy-mm-dd" });
+                $( "#end-date").datepicker({ dateFormat: "yy-mm-dd" });
             });
         </script>
         <script>
@@ -109,8 +114,11 @@
                 min: 0,
                 max: 6000,
                 values: [ 1000, 4000 ],
+                create: function( event, ui ) {
+                  $( "#amount" ).val( "£" + 1000 + " - £" + 4000 );
+                },
                 slide: function( event, ui ) {
-                  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                  $( "#amount" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
                 }
               });
             });
