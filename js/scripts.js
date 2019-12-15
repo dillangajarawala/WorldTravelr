@@ -41,21 +41,22 @@ $(document).ready(function() {
     if (favResorts == null) {
         favResorts = []
     }
-    var resortId = $('.favorites-toggle').attr('id');
-    if (favResorts.includes(resortId)) {
-        $('.favorites-toggle').text('Delete From Favorites');
-        $('.favorites-toggle').css('background-color', 'red');
-        $('.favorites-toggle').attr('data-add', 'false');
-    } else {
-        $('.favorites-toggle').text('Add To Favorites');
-        $('.favorites-toggle').css('background-color', 'lime');
-        $('.favorites-toggle').attr('data-add', 'true');
-    }
+    $('.favorites-toggle').each(function() {
+        if (favResorts.includes($(this).attr('id'))) {
+            $(this).text('Delete From Favorites');
+            $(this).css('background-color', 'red');
+            $(this).attr('data-add', 'false');
+        } else {
+            $(this).text('Add To Favorites');
+            $(this).css('background-color', 'lime');
+            $(this).attr('data-add', 'true');
+        }
+    }); 
 });
 
 $(document).ready(function() {
-    $('.favorites-toggle').on('click', function() {
-        $(this).attr('disabled', true);
+    $('.favorites-toggle').on('click', function(event) {
+        event.preventDefault();
         var favResorts = JSON.parse(localStorage.getItem('favResorts'));
         var toAdd = $(this).attr('data-add');
         var resortId = $(this).attr('id');
@@ -64,15 +65,42 @@ $(document).ready(function() {
                 favResorts = []
             }
             favResorts.push(resortId);
+            $(this).text('Delete From Favorites');
+            $(this).css('background-color', 'red');
+            $(this).attr('data-add', 'false');
             localStorage.setItem('favResorts', JSON.stringify(favResorts));
+            if ($(this).attr('class') === 'favorites-toggle small') {
+                $.getJSON('resorts.json', function(data) {
+                    for (var i in data.resorts) {
+                        if (resortId === data.resorts[i].id) {
+                            var item = `<div class="resort-small" data-id='`+data.resorts[i].id+`'>
+                            <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
+                                <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
+                            </div>
+                        <br>`;
+                        $('#favorites-list').append(item);
+                        }
+                    }
+                });
+            }
         } else {
             favResorts = favResorts.filter(function(item) {
                 return item !== resortId
             });
+            $(this).text('Add To Favorites');
+            $(this).css('background-color', 'lime');
+            $(this).attr('data-add', 'true');
             localStorage.setItem('favResorts', JSON.stringify(favResorts));
+            if ($(this).attr('class') === 'favorites-toggle small') {
+                $('#favorites-list').children().each(function() {
+                    if ($(this).attr('data-id') === resortId) {
+                        $(this).remove();
+                    }
+                });
+            }
         }
-    })
-})
+    });
+});
 
 $(document).ready(function() {
     $('.search-link').on('click', function(event) {
@@ -123,9 +151,35 @@ $(document).ready(function() {
     });
 });
 
-function loadResults() {
+function showResults() {
     var results = JSON.parse(localStorage.getItem("searchResults"));
-    for (var i in results) {
-        alert(results[i]);
-    }
+    $.getJSON('resorts.json', function(data) {
+        for (var i in data.resorts) {
+            if (results.includes(data.resorts[i].id)) {
+                var item = `<div class="resort-small">
+                <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
+                    <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
+                    <a href='#'><button id='`+data.resorts[i].id+`' class="favorites-toggle small"></button></a><br><br>
+                </div>
+            <br>`;
+            $('#search-results').append(item);
+            }
+        }
+    });
+}
+
+function showFavorites() {
+    var favs = JSON.parse(localStorage.getItem("favResorts"));
+    $.getJSON('resorts.json', function(data) {
+        for (var i in data.resorts) {
+            if (favs.includes(data.resorts[i].id)) {
+                var item = `<div class="resort-small" data-id='`+data.resorts[i].id+`'>
+                <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
+                    <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
+                </div>
+            <br>`;
+            $('#favorites-list').append(item);
+            }
+        }
+    });
 }
