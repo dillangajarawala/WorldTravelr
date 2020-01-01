@@ -10,46 +10,35 @@ $(document).ready(function() {
 });
 
 function setData() {
-    console.log(data);
-    var page = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-    $.getJSON('resorts.json', function(data) {
-        for (var i in data.resorts) {
-            if (data.resorts[i].url === page) {
-                $('.favorites-toggle').attr('id', data.resorts[i].id);
-                $('.intro-content h1').text(data.resorts[i].name);
-                $('head title').text(data.resorts[i].name);
-                $('.intro-content .fill').attr('src', data.resorts[i].picture);
-                $('.small-content .price-jump').text('Starting from just £' + data.resorts[i].price);
-                $('.small-content .small-description').text(data.resorts[i].short_description);
-                $('.small-content .hidden-info .comfort-lvl').text('Comfort Level: ' + data.resorts[i].comfortLevel);
-                $('.small-content .hidden-info .destination').text('Destination: ' + data.resorts[i].destination);
-                $('.small-content .hidden-info .location').text('Location: ' + data.resorts[i].location);
-                document.getElementById("description").innerHTML=data.resorts[i].long_description;
-                var activities = data.resorts[i].activities
-                for (var j in activities) {
-                    var img = 'images/' + activities[j] + '.jpg';
-                    var act = "<tr><td><p>"+activities[j]+"</p></td><td><img class='tabbed-image' src='"+img+"'></td></tr>";
-                    $('.small-content .hidden-info table').append(act);
-                }
-                break;
-            }
-        }
-    });
+    $('.favorites-toggle').attr('id', data.id);
+    $('.intro-content h1').text(data.name);
+    $('head title').text(data.name);
+    $('.intro-content .fill').attr('src', data.picture);
+    $('.small-content .price-jump').text('Starting from just £' + data.price);
+    $('.small-content .small-description').text(data.short_description);
+    $('.small-content .hidden-info .comfort-lvl').text('Comfort Level: ' + data.comfortLevel);
+    $('.small-content .hidden-info .destination').text('Destination: ' + data.destination);
+    $('.small-content .hidden-info .location').text('Location: ' + data.location);
+    document.getElementById("description").innerHTML=data.long_description;
+    var activities = data.activities
+    for (var j in activities) {
+        var img = 'images/' + activities[j] + '.jpg';
+        var act = "<tr><td><p>"+activities[j]+"</p></td><td><img class='tabbed-image' src='"+img+"'></td></tr>";
+        $('.small-content .hidden-info table').append(act);
+    }
 };
 
 function addFavoriteDisplay(resortId) {
-    $.getJSON('resorts.json', function(data) {
-        for (var i in data.resorts) {
-            if (resortId === data.resorts[i].id) {
-                var item = `<div class="resort-small" data-id='`+data.resorts[i].id+`'>
-                <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
-                    <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
+        for (var i in resorts) {
+            if (resortId === resorts[i].id) {
+                var item = `<div class="resort-small" data-id='`+resorts[i].id+`'>
+                <a href='`+resorts[i].url+`' title='`+resorts[i].short_description+`'><img class='resort-small-img' src='`+resorts[i].picture+`'></a>
+                    <h2>`+resorts[i].name+`</h2>Starting from £`+resorts[i].price+`<br><br>
                 </div>
             <br>`;
             $('#favorites-list').append(item);
             }
         }
-    });
 }
 
 function setButtonAttrs(button, msg, color, toAdd) {
@@ -135,61 +124,55 @@ $(document).ready(function() {
         localStorage.setItem('higherPrice', higherPrice);
         localStorage.setItem('activities', JSON.stringify(activities));
 
-        $.getJSON('resorts.json', function(data) {
-            var results = []
-            for (var i in data.resorts) {
-                var cond1 = destination.length === 0 || destination === data.resorts[i].destination;
-                var cond2 = comfort.length === 0 || comfort === data.resorts[i].comfort;
-                var cond3 = data.resorts[i].price >= lowerPrice && data.resorts[i].price <= higherPrice;
-                var open = new Date(data.resorts[i].startDate);
-                var close = new Date(data.resorts[i].endDate);
-                var cond4 = (startDate >= open && endDate <= close);
-                var cond5 = activities.every(val => data.resorts[i].activities.includes(val));
-                if (cond1 && cond2 && cond3 && cond4 && cond5) {
-                    results.push(data.resorts[i].id);
-                }
+        var results = []
+        for (var i in resorts) {
+            var cond1 = destination.length === 0 || destination === resorts[i].destination;
+            var cond2 = comfort.length === 0 || comfort === resorts[i].comfort;
+            var cond3 = resorts[i].price >= lowerPrice && resorts[i].price <= higherPrice;
+            var open = new Date(resorts[i].startDate);
+            var close = new Date(resorts[i].endDate);
+            var cond4 = (startDate >= open && endDate <= close);
+            var cond5 = activities.every(val => resorts[i].activities.includes(val));
+            if (cond1 && cond2 && cond3 && cond4 && cond5) {
+                results.push(resorts[i].id);
             }
-            localStorage.setItem('searchResults', JSON.stringify(results));
-        });
+        }
+        localStorage.setItem('searchResults', JSON.stringify(results));
     });
 });
 
 function showResults() {
     var results = JSON.parse(localStorage.getItem("searchResults"));
-    $.getJSON('resorts.json', function(data) {
-        for (var i in data.resorts) {
-            if (results.includes(data.resorts[i].id)) {
-                var item = `<div class="resort-small">
-                <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
-                    <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
-                    <a href='#'><button id='`+data.resorts[i].id+`' class="favorites-toggle small"></button></a><br><br>
-                </div>
-            <br>`;
-            $('#search-results').append(item);
-            }
+    for (var i in resorts) {
+        if (results.includes(resorts[i].id)) {
+            var item = `<div class="resort-small">
+            <a href='`+resorts[i].url+`' title='`+resorts[i].short_description+`'><img class='resort-small-img' src='`+resorts[i].picture+`'></a>
+                <h2>`+resorts[i].name+`</h2>Starting from £`+resorts[i].price+`<br><br>
+                <a href='#'><button id='`+resorts[i].id+`' class="favorites-toggle small"></button></a><br><br>
+            </div>
+        <br>`;
+        $('#search-results').append(item);
         }
-    });
+    }
 }
 
 function showFavorites() {
     var favs = JSON.parse(localStorage.getItem("favResorts"));
-    $.getJSON('resorts.json', function(data) {
-        for (var i in data.resorts) {
-            if (favs.includes(data.resorts[i].id)) {
-                var item = `<div class="resort-small" data-id='`+data.resorts[i].id+`'>
-                <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
-                    <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
-                </div>
-            <br>`;
-            $('#favorites-list').append(item);
-            }
+    for (var i in resorts) {
+        if (favs.includes(resorts[i].id)) {
+            var item = `<div class="resort-small" data-id='`+resorts[i].id+`'>
+            <a href='`+resorts[i].url+`' title='`+resorts[i].short_description+`'><img class='resort-small-img' src='`+resorts[i].picture+`'></a>
+                <h2>`+resorts[i].name+`</h2>Starting from £`+resorts[i].price+`<br><br>
+            </div>
+        <br>`;
+        $('#favorites-list').append(item);
         }
-        if (favs.length > 0) {
-            var clear = `<button id='favorites-clear'>Clear Favorites List</button>
-            <br><br>`;
-            $('#favorites-list').append(clear);
-        }
-    });
+    }
+    if (favs.length > 0) {
+        var clear = `<button id='favorites-clear'>Clear Favorites List</button>
+        <br><br>`;
+        $('#favorites-list').append(clear);
+    }
 }
 
 $(document).ready(function() {

@@ -7,6 +7,115 @@
         <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+        <script>
+            var resorts = [
+        {
+            "id":"resort1",
+            "destination":"Caribbean",
+            "name":"Les Boucaniers",
+            "location":"Martinique",
+            "comfortLevel": "5",
+            "activities":["water skiing", "tennis", "scuba diving", "spa"],
+            "price":1254,
+            "startDate":"2017-05-05",
+            "endDate":"2019-12-31",
+            "short_description":"The resort of Les Boucaniers is located on the laid-back beach-covered south coast of the island, and is perfectly placed for Martinique holidays that are both relaxing and awe-inspiring.",
+            "picture":"images/resortpool.jpg",
+            "long_description":"A divers' paradise in the Baie du Marin, a legendary spot.<br>Its bungalows are discreetly lodged in a tropical garden beside the white sand beach in superb Marin Bay. A magical site where you can enjoy a taste of everything, alone or with family or friends. Try water sports and the magnificent Club Med Spa*. You'll be enchanted by the exotic flavours of the local cuisine and the joyful spirit of the Caribbean.",
+            "url":"resort1.html"
+        },
+        {
+            "id":"resort2",
+            "destination":"Indian Ocean",
+            "name":"La Plantation d'Albion",
+            "location":"Mauritius",
+            "comfortLevel": "4",
+            "activities":["kids club","golf", "scuba diving", "tennis", "sailing", "spa"],
+            "price":2062,
+            "startDate":"2017-01-01",
+            "endDate":"2019-12-31",
+            "short_description":"Beautifully located in one of the last remote creeks on the island, La Plantation d'Albion Club Med welcomes the most demanding of guests into a world of supreme refinement.",
+            "picture":"images/infinityPool.jpg",
+            "long_description":"In a remote beauty spot, savour the luxury of Mauritian lifestyle. <br> The idyllic natural setting is enhanced by the sublime decor designed by Marc Hertrich and Nicolas Adnet, and the Resort's top-end comfort is perfectly reflected in its beautifully spacious rooms. The exceptional CINQ MONDES Spa* and luxurious overflow pool add an ideally Zen touch.<br> The Resort is entirely devoted to fulfilling its guests' desires and offers discreet, personal service in its swimming areas, bars and 'Table Gourmet' restaurants.",
+            "url":"resort2.html"
+        },
+        {
+            "id":"resort3",
+            "destination":"South America",
+            "name":"Inkaterra Machu Picchu Pueblo Hotel",
+            "location":"Peru",
+            "comfortLevel": "5",
+            "activities":["golf", "horse riding", "tennis", "spa"],
+            "price":4075,
+            "startDate":"2018-05-01",
+            "endDate":"2018-10-25",
+            "short_description":"Come and relax in one of the most luxurious Peruvian resorts, situated in the heart of the Andes mountain range. Experience beautiful views, supreme service, and activities for days.",
+            "picture":"images/mountainPool.jpg",
+            "long_description":"A rustic resort near Macchu Picchu, stay at this traveler's dream. <br> You will be amazed by the mountain air, and the five-star cabins you will live in during your stay. Views of the Andes mountains and the Peruvian rainforest will further enhance this experience. Enjoy horse riding, picturesque golf, or even a trip to our internationally acclaimed spa. <br> If you need a break from the activities, trap your palate and try any of our five restaurants on-site.",
+            "url":"resort3.html"
+        },
+        {
+            "id":"resort4",
+            "destination":"Alps",
+            "name":"Carlton Hotel St. Moritz",
+            "location":"Switzerland",
+            "comfortLevel": "3",
+            "activities":["kids club","golf", "hiking", "horse riding", "spa"],
+            "price":1789,
+            "startDate":"2017-09-01",
+            "endDate":"2020-06-30",
+            "short_description":"Located in the Swiss Alps, the St. Moritz Resort and Spa will be your winter wonderland fantasy. Enjoy mountain activities and relax at the same time.",
+            "picture":"images/AlpsChateau.jpg",
+            "long_description":"Enjoy the majestic mountains of the Swiss Alps at the St. Moritz Resort and Spa. <br> Perfect for your inner outdoorsman, there are many things to do at this rustic chateau. Ride horses through the picturesque peaks or hike miles for the perfect view. Additionally, there are great activities for kids, so you can keep them distracted while you adventure. <br> Whatever you choose to do, the team will provide you with the best service possible and is committed to your comfort.",
+            "url":"resort4.html"
+        },
+        {
+            "id":"resort5",
+            "destination":"Asia",
+            "name":"Beach Villas Hotel",
+            "location":"Singapore",
+            "comfortLevel": "4",
+            "activities":["water skiing", "scuba diving", "sailing", "spa"],
+            "price":2745,
+            "startDate":"2020-01-01",
+            "endDate":"2020-12-31",
+            "short_description":"Live in the lap of luxury at the Beach Villas Hotel, an aquatic heaven located in South Asia. Create your perfect holiday with a perfectly tailored experience, and allow us to spoil you.",
+            "picture":"images/singapore.jpg",
+            "long_description":"Visit the water of your dreams, when you stay at the Beach Villas Hotel. <br> This resort is beautifully tailored to provide the best water sports experience for anyone in the entirety of Asia. Hit the waves by going water skiing, sailing, or even go under the water and see the natural wildlife while scuba diving. <br> Once you need a break, indulge in our outdoor spa or enjoy a Michelin-starred dinner at our restaurants on premises. This resort promises not to disappoint.",
+            "url":"resort5.html"
+        },
+        {
+            "id":"resort6",
+            "destination":"Africa",
+            "name":"Hotel Fairmont Mara Safari Club",
+            "location":"Kenya",
+            "comfortLevel": "3",
+            "activities":["kids club","golf", "hiking", "horse riding", "tennis"],
+            "price":1500,
+            "startDate":"2018-05-25",
+            "endDate":"2021-09-30",
+            "short_description":"The perfect place to bring your kids, this safari resort will take care of all your needs while providing an exciting experience. Take your African holiday here!",
+            "picture":"images/safari.jpg",
+            "long_description":"Jump into an exciting safari filled with beautiful landscapes and a variety of animals. <br> Experience world-class African hospitality, fun child activities, and all the animals you could ever want to see. Enjoy outdoor activities such as golf, tennis, horseback riding, and lots of hiking! Hotel Fairmont Mara Safari Club resort delivers all of those plus great amenities. <br> If you want an experience for the whole family to never forget, be sure to book your suite today!",
+            "url":"resort6.html"
+        },
+        {
+            "id":"resort7",
+            "destination":"North and Central America",
+            "name":"The Kahala Hotel & Resort",
+            "location":"Hawaii",
+            "comfortLevel": "5",
+            "activities":["kids club","golf", "scuba diving", "tennis", "sailing", "spa", "water skiing", "scuba diving", "hiking", "horse riding"],
+            "price":5000,
+            "startDate":"2019-01-01",
+            "endDate":"2024-12-31",
+            "short_description":"Nestled on the most beautiful corner of Hawaii's Oahu Island, The Kahala Resort will take your breath away and deliver one of the best resort stays of your life. ",
+            "picture":"images/hawaii.jpg",
+            "long_description":"Make all your dreams come true in one of the most beautiful places on Earth. <br> The top-notch amenities and pristine service offered by The Kahala Resort is unmatched anywhere else. Enjoy a virtually unlimited set of daily activities to participate in, and visit our world-renowed spa for a relaxing afternoon. <br> Additionally, take advantage of our five-star dining and poolside bars for an added flair to your time. Kids are welcome as well, and have a separate set of activities.",
+            "url":"resort7.html"
+        }
+    ]
+        </script>
     </head>
 
     <body>
