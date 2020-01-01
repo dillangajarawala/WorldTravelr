@@ -10,6 +10,7 @@ $(document).ready(function() {
 });
 
 function setData() {
+    console.log(data);
     var page = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
     $.getJSON('resorts.json', function(data) {
         for (var i in data.resorts) {
@@ -36,6 +37,27 @@ function setData() {
     });
 };
 
+function addFavoriteDisplay(resortId) {
+    $.getJSON('resorts.json', function(data) {
+        for (var i in data.resorts) {
+            if (resortId === data.resorts[i].id) {
+                var item = `<div class="resort-small" data-id='`+data.resorts[i].id+`'>
+                <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
+                    <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
+                </div>
+            <br>`;
+            $('#favorites-list').append(item);
+            }
+        }
+    });
+}
+
+function setButtonAttrs(button, msg, color, toAdd) {
+    $(button).text(msg);
+    $(button).css('background-color', color);
+    $(button).attr('data-add', toAdd);
+}
+
 $(document).ready(function() {
     var favResorts = JSON.parse(localStorage.getItem("favResorts"));
     if (favResorts == null) {
@@ -43,13 +65,9 @@ $(document).ready(function() {
     }
     $('.favorites-toggle').each(function() {
         if (favResorts.includes($(this).attr('id'))) {
-            $(this).text('Delete From Favorites');
-            $(this).css('background-color', 'red');
-            $(this).attr('data-add', 'false');
+            setButtonAttrs(this, 'Delete From Favorites', 'red', 'false');
         } else {
-            $(this).text('Add To Favorites');
-            $(this).css('background-color', 'lime');
-            $(this).attr('data-add', 'true');
+            setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
         }
     }); 
 });
@@ -65,31 +83,16 @@ $(document).ready(function() {
                 favResorts = []
             }
             favResorts.push(resortId);
-            $(this).text('Delete From Favorites');
-            $(this).css('background-color', 'red');
-            $(this).attr('data-add', 'false');
+            setButtonAttrs(this, 'Delete From Favorites', 'red', 'false');
             localStorage.setItem('favResorts', JSON.stringify(favResorts));
             if ($(this).attr('class') === 'favorites-toggle small') {
-                $.getJSON('resorts.json', function(data) {
-                    for (var i in data.resorts) {
-                        if (resortId === data.resorts[i].id) {
-                            var item = `<div class="resort-small" data-id='`+data.resorts[i].id+`'>
-                            <a href='`+data.resorts[i].url+`' title='`+data.resorts[i].short_description+`'><img class='resort-small-img' src='`+data.resorts[i].picture+`'></a>
-                                <h2>`+data.resorts[i].name+`</h2>Starting from £`+data.resorts[i].price+`<br><br>
-                            </div>
-                        <br>`;
-                        $('#favorites-list').append(item);
-                        }
-                    }
-                });
+                addFavoriteDisplay(resortId);
             }
         } else {
             favResorts = favResorts.filter(function(item) {
                 return item !== resortId
             });
-            $(this).text('Add To Favorites');
-            $(this).css('background-color', 'lime');
-            $(this).attr('data-add', 'true');
+            setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
             localStorage.setItem('favResorts', JSON.stringify(favResorts));
             if ($(this).attr('class') === 'favorites-toggle small') {
                 $('#favorites-list').children().each(function() {
@@ -181,5 +184,20 @@ function showFavorites() {
             $('#favorites-list').append(item);
             }
         }
+        if (favs.length > 0) {
+            var clear = `<button id='favorites-clear'>Clear Favorites List</button>
+            <br><br>`;
+            $('#favorites-list').append(clear);
+        }
     });
 }
+
+$(document).ready(function() {
+    $('#favorites-clear').on('click', function() {
+        $('#favorites-list').children().not('h3').remove();
+        localStorage.setItem("favResorts", JSON.stringify([]));
+        $('.favorites-toggle').each(function() {
+            setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
+        })
+    });
+});

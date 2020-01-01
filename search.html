@@ -88,6 +88,10 @@
         <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
         <script src="js/scripts.js"></script>
         <script>
+            showResults();
+            showFavorites();
+        </script>
+        <script>
             $(function() {
               var availableDrinks = [
                   "Martinique",
@@ -139,8 +143,28 @@
             $(document).tooltip();
         </script>
         <script>
-            showResults();
-            showFavorites();
+            $(function () {
+                $('#search-results .resort-small').draggable({
+                    revert: true,
+                });
+                $('#favorites-list').droppable({
+                    tolerance: "touch",
+                    drop: function(event, ui) {
+                        var list = $(this),
+                        move = ui.draggable,
+                        obj = $(move).children("a[href='#']").children(":first-child");
+                        resortId = obj.attr('id');
+                        var toAdd = obj.attr('data-add');
+                        if (toAdd === 'true') {
+                            var favResorts = JSON.parse(localStorage.getItem('favResorts'));
+                            favResorts.push(resortId);
+                            localStorage.setItem("favResorts", JSON.stringify(favResorts));
+                            addFavoriteDisplay(resortId);
+                            setButtonAttrs($(".favorites-toggle[id='"+resortId+"'"), 'Delete From Favorites', 'red', 'false');
+                        }
+                    }
+                })
+            });
         </script>
     </body>
 </html>

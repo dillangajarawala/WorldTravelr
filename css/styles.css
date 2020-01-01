@@ -330,3 +330,15 @@ h2 {
 a {
     color: black;
 }
+
+#favorites-clear {
+    border-radius: 5px;
+    font-family: 'Courgette', 'cursive';
+    width: 200px;
+    height: 25px;
+    font-size: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+}
