@@ -84,11 +84,7 @@ $(document).ready(function() {
             setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
             localStorage.setItem('favResorts', JSON.stringify(favResorts));
             if ($(this).attr('class') === 'favorites-toggle small') {
-                $('#favorites-list').children().each(function() {
-                    if ($(this).attr('data-id') === resortId) {
-                        $(this).remove();
-                    }
-                });
+                $("#favorites-list .resort-small[data-id='"+resortId+"']").remove();
             }
         }
     });

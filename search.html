@@ -269,7 +269,27 @@
                             favResorts.push(resortId);
                             localStorage.setItem("favResorts", JSON.stringify(favResorts));
                             addFavoriteDisplay(resortId);
-                            setButtonAttrs($(".favorites-toggle[id='"+resortId+"'"), 'Delete From Favorites', 'red', 'false');
+                            setButtonAttrs($(".favorites-toggle[id='"+resortId+"']"), 'Delete From Favorites', 'red', 'false');
+                            $(function () {
+                                $('#favorites-list .resort-small').draggable({
+                                    revert: true,
+                                });
+                                $('#search-results').droppable({
+                                    tolerance: "touch",
+                                    drop: function(event, ui) {
+                                        var results = $(this),
+                                        move = ui.draggable,
+                                        resortId = move.attr('data-id');
+                                        var favResorts = JSON.parse(localStorage.getItem("favResorts"));
+                                        favResorts = favResorts.filter(function(item) {
+                                            return item !== resortId
+                                        });
+                                        localStorage.setItem("favResorts", JSON.stringify(favResorts));
+                                        $(move).remove();
+                                        setButtonAttrs($(".favorites-toggle[id='"+resortId+"']"), 'Add To Favorites', 'lime', 'true');
+                                    }
+                                });
+                            });
                         }
                     }
                 })
