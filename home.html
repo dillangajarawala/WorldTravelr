@@ -124,9 +124,7 @@
             <nav>
                 <ul>
                     <li class="logo"><a href="home.html"><img src="images/logo.png"></a></li>
-                    <li>Destinations</li>
-                    <li><a href="home.html">Search Vacations</a></li>
-                    <li><a href="resort1.html">Resort 1</a></li>
+                    <li><a href="search.html">Search Vacations</a></li>
                 </ul>
             </nav>
             <!-- end of nav bar -->
@@ -174,69 +172,22 @@
             <br><br>
             <a class="search-link" href="search.html"><img class="search-img" src="images/glass.png"></a>
         </div>
+        <!-- footer -->
         <footer>
             <ul>
-                <li><a href="facebook.com"><img class="icon-link" src="images/facebook.png"></a></li>
-                <li><a href="instagram.com"><img class="icon-link" src="images/instagram.png"></a></li>
-                <li><a href="twitter.com"><img class="icon-link" src="images/twitter.png"></a></li>
-                <li><a href="youtube.com"><img class="icon-link" src="images/youtube.png"></a></li>
+                <li><a href="https://www.facebook.com"><img class="icon-link" src="images/facebook.png"></a></li>
+                <li><a href="https://www.instagram.com"><img class="icon-link" src="images/instagram.png"></a></li>
+                <li><a href="https://www.twitter.com"><img class="icon-link" src="images/twitter.png"></a></li>
+                <li><a href="https://www.youtube.com"><img class="icon-link" src="images/youtube.png"></a></li>
             </ul>
             <div id="footertext">
                 <h4>Book your next vacation with WorldTravelr</h4>
-                <p>We specialise in luxury all-inclusive holidays – with absolutely no hidden costs. Thrilling skiing, sensational long haul getaways and wonderful cruises - just a few of the experiences you can enjoy with Club Med. For travel advice on security, local laws, passport and visa requirements please visit https://www.gov.uk/foreign-travel-advice</p>
+                <p>We specialise in luxury all-inclusive holidays – with absolutely no hidden costs. Thrilling skiing, sensational long haul getaways and wonderful cruises - just a few of the experiences you can enjoy with WorldTravelr. For travel advice on security, local laws, passport and visa requirements please visit https://www.gov.uk/foreign-travel-advice</p>
             </div>
         </footer>
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
         <script src="js/scripts.js"></script>
-        <script>
-            $(function() {
-              var availableDrinks = [
-                  "Martinique",
-                  "Mauritius",
-                  "Peru",
-                  "Switzerland",
-                  "Singapore",
-                  "Kenya",
-                  "Hawaii"
-              ];
-              $( "#destination" ).autocomplete({
-                source: availableDrinks,
-                required: true
-              });
-            });
-        </script>
-        <script>
-            $(function() {
-                $( "#comfort").selectmenu({ width : 'auto'});
-            });
-        </script>
-        <script>
-            $(function() {
-                $( "#start-date").datepicker({ dateFormat: "yy-mm-dd" });
-                $( "#end-date").datepicker({ dateFormat: "yy-mm-dd" });
-            });
-        </script>
-        <script>
-            $(function() {
-              $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 6000,
-                values: [ 1000, 4000 ],
-                create: function( event, ui ) {
-                  $( "#amount" ).val( "£" + 1000 + " - £" + 4000 );
-                },
-                slide: function( event, ui ) {
-                  $( "#amount" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
-                }
-              });
-            });
-        </script>
-        <script>
-            $(function() {
-                $( "#activities" ).controlgroup();
-            });
-        </script>
+        <script src="js/form.js"></script>
     </body>
 </html>

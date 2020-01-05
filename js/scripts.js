@@ -1,3 +1,6 @@
+// Relevant Scripts
+
+// Slides down hidden content on click
 $(document).ready(function() {
     $('.small-content').on('click', 'a', function(event) {
         event.preventDefault();
@@ -5,10 +8,12 @@ $(document).ready(function() {
     });
 });
 
+// enables jquery UI tabs
 $(document).ready(function() {
     $("#tabs").tabs();
 });
 
+// sets the data for each resort page based on embedded json
 function setData() {
     $('.favorites-toggle').attr('id', data.id);
     $('.intro-content h1').text(data.name);
@@ -28,6 +33,7 @@ function setData() {
     }
 };
 
+// adds the resort item html to the favorites list
 function addFavoriteDisplay(resortId) {
         for (var i in resorts) {
             if (resortId === resorts[i].id) {
@@ -36,17 +42,19 @@ function addFavoriteDisplay(resortId) {
                     <h2>`+resorts[i].name+`</h2>Starting from £`+resorts[i].price+`<br><br>
                 </div>
             <br>`;
-            $('#favorites-list').append(item);
+            $('#favorites-list-items').append(item);
             }
         }
 }
 
+// sets favorites toggle button attributes
 function setButtonAttrs(button, msg, color, toAdd) {
     $(button).text(msg);
     $(button).css('background-color', color);
     $(button).attr('data-add', toAdd);
 }
 
+// sets colors for all favorites buttons on load
 $(document).ready(function() {
     var favResorts = JSON.parse(localStorage.getItem("favResorts"));
     if (favResorts == null) {
@@ -61,6 +69,7 @@ $(document).ready(function() {
     }); 
 });
 
+// handler function to add or delete from favorites list
 $(document).ready(function() {
     $('.favorites-toggle').on('click', function(event) {
         event.preventDefault();
@@ -77,6 +86,21 @@ $(document).ready(function() {
             if ($(this).attr('class') === 'favorites-toggle small') {
                 addFavoriteDisplay(resortId);
             }
+            if (favResorts.length === 1 && $('#favorites-list-button').children().length === 0) {
+                var clear = `<button id='favorites-clear'>Clear Favorites List</button>
+                    <br><br>`;
+                $('#favorites-list-button').append(clear);
+                $(document).ready(function() {
+                    $('#favorites-clear').on('click', function() {
+                        $('#favorites-list-items').children().remove();
+                        $('#favorites-list-button').children().remove();
+                        localStorage.setItem("favResorts", JSON.stringify([]));
+                        $('.favorites-toggle').each(function() {
+                            setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
+                        })
+                    });
+                });
+            }
         } else {
             favResorts = favResorts.filter(function(item) {
                 return item !== resortId
@@ -84,12 +108,17 @@ $(document).ready(function() {
             setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
             localStorage.setItem('favResorts', JSON.stringify(favResorts));
             if ($(this).attr('class') === 'favorites-toggle small') {
-                $("#favorites-list .resort-small[data-id='"+resortId+"']").remove();
+                $("#favorites-list-items .resort-small[data-id='"+resortId+"']").remove();
+            }
+            if (favResorts.length === 0) {
+                $("#favorites-list-button").children().remove();
             }
         }
+    dragDropReverse();
     });
 });
 
+// search function based on parameters
 $(document).ready(function() {
     $('.search-link').on('click', function(event) {
         var startDate = $('#start-date').datepicker('getDate');
@@ -137,6 +166,7 @@ $(document).ready(function() {
     });
 });
 
+// adds result items to search results page
 function showResults() {
     var results = JSON.parse(localStorage.getItem("searchResults"));
     for (var i in resorts) {
@@ -152,6 +182,7 @@ function showResults() {
     }
 }
 
+// adds favorites to search results page
 function showFavorites() {
     var favs = JSON.parse(localStorage.getItem("favResorts"));
     for (var i in resorts) {
@@ -161,22 +192,49 @@ function showFavorites() {
                 <h2>`+resorts[i].name+`</h2>Starting from £`+resorts[i].price+`<br><br>
             </div>
         <br>`;
-        $('#favorites-list').append(item);
+        $('#favorites-list-items').append(item);
         }
     }
     if (favs.length > 0) {
         var clear = `<button id='favorites-clear'>Clear Favorites List</button>
         <br><br>`;
-        $('#favorites-list').append(clear);
+        $('#favorites-list-button').append(clear);
     }
 }
 
+// clears the favorites list
 $(document).ready(function() {
     $('#favorites-clear').on('click', function() {
-        $('#favorites-list').children().not('h3').remove();
+        $('#favorites-list-items').children().remove();
+        $('#favorites-list-button').children().remove();
         localStorage.setItem("favResorts", JSON.stringify([]));
         $('.favorites-toggle').each(function() {
             setButtonAttrs(this, 'Add To Favorites', 'lime', 'true');
         })
     });
 });
+
+// enables reverse drag and drop
+function dragDropReverse() {
+    $('#favorites-list-items .resort-small').draggable({
+        revert: true,
+    });
+    $('#search-results').droppable({
+        tolerance: "touch",
+        drop: function(event, ui) {
+            var results = $(this),
+            move = ui.draggable,
+            resortId = move.attr('data-id');
+            var favResorts = JSON.parse(localStorage.getItem("favResorts"));
+            favResorts = favResorts.filter(function(item) {
+                return item !== resortId
+            });
+            localStorage.setItem("favResorts", JSON.stringify(favResorts));
+            $(move).remove();
+            setButtonAttrs($(".favorites-toggle[id='"+resortId+"']"), 'Add To Favorites', 'lime', 'true');
+            if (favResorts.length === 0) {
+                $("#favorites-list-button").children().remove();
+            }
+        }
+    });
+}
